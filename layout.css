@@ -1,0 +1,110 @@
+body{
+    background:#444444;
+}
+html * {
+    margin: 0px;
+    padding: 0px; 
+    font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+.navbar{
+    height: 70px;
+    width: 100vw;
+    background-color: black;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 2.0em;
+    margin-top: 10px;
+    
+
+
+    
+}
+
+.navbar a:hover  {
+    text-decoration: none;
+}
+.navbar ul {
+    list-style-type: none;
+    width: 100% 
+    
+}
+
+.navbar ul li {
+    float: right;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 70px; 
+    line-height: 69px;
+    
+} 
+
+
+.navbar ul li:hover {
+    background-color:gray;
+    cursor: pointer;
+}
+.banner{
+    width:100vw;
+    height: auto;
+}
+
+.banner img{
+    width:100vw;
+    height: auto;
+    z-index: 100;
+   
+
+}
+.banner .banner-text{
+    position: absolute;
+    bottom: 300px;
+    width: 100%;
+    font-size: 5.0em;
+    text-align: center;
+}
+.banner-text p{
+    color: white;
+    margin: 0px;
+    text-align: center;
+    
+}
+.banner-text-header{
+    font-size: 1.5em;
+}
+
+.orlando-container {
+    width:100vw;
+    height: 540px;
+    background-color:#444444
+} 
+.orlando-container p{
+    color:white;
+    text-align: center;
+    font-size: 3.0em;
+    margin-top: 50px;
+    margin-bottom: 5px;
+    font-weight:0.9em
+}
+.orlando-container p.band-container-content{
+    width: 700px;
+    margin-left: auto;
+    margin-right:auto; 
+
+}
+
+
+} 
+.orlando-container p.band-container-subtitiles{
+    color:pink;
+    font-size: 300em;
+}
+.orlando-container-text{
+    color:white;
+    text-align:center;
+    font-size: 1.0em;
+
+}
