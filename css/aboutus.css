@@ -1,0 +1,160 @@
+body{
+    background:#444444;
+}
+html * {
+    margin: 0px;
+    padding: 0px; 
+    font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+.navbar{
+    height: 70px;
+    width: 100vw;
+    background-color: black;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 2.0em;
+    margin-top: 10px;
+    
+
+
+    
+}
+
+.navbar a:hover  {
+    text-decoration: none;
+}
+.navbar ul {
+    list-style-type: none;
+    width: 100% 
+    
+}
+
+.navbar ul li {
+    float: right;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 70px; 
+    line-height: 69px;
+    
+} 
+
+
+.navbar ul li:hover {
+    background-color:gray;
+    cursor: pointer;
+}
+.banner{
+    width:100vw;
+    height: auto;
+}
+
+.banner img{
+    width:100vw;
+    height: auto;
+    z-index: 100;
+   
+
+}
+.banner .banner-text{
+    position: absolute;
+    bottom: 380px;
+    width: 100%;
+    font-size: 50px;
+    text-align: center;
+    
+    
+    
+
+}
+.banner-text p{
+    color: white;
+    margin-top: 0px;
+    text-align: center;
+    
+    
+}
+.banner-text-header{
+    font-size: 2.5em;
+    text-align: center;
+    color: white;
+
+    
+   
+}
+
+.orlando-container {
+    width:100vw;
+    height: 0px;
+    background-color:#444444
+} 
+.orlando-container p{
+    color:red;
+    text-align: center;
+    font-size: 3.5em;
+    font-weight:0.9em
+}
+.orlando-container p.band-container-content{
+    width: 700px;
+    margin-left: auto;
+    margin-right:auto; 
+
+}
+
+
+
+.orlando-container p.band-container-subtitiles{
+    color:pink;
+    font-size: 300em;
+}
+.orlando-container-text{
+    color:white;
+    text-align:center;
+    font-size: 1.0em;
+
+}
+
+.orlando-attractions {
+    width:100vw;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: #444444;
+    overflow:hidden;
+    
+}
+.orlando-attractions ul {
+    widows: 100%;
+    list-style-type: none;
+    height: 200px;
+}
+.orlando-attractions ul li {
+    float: left;
+    width:50%;
+    text-align:center;
+    font-size: 30px;
+    font-weight: 300;
+    color:white;
+}
+.orlando-attractions ul li img{
+    width: 80%;
+    height:600px;
+}
+.orlando-attractions-subtitles{
+    font-size: 20px;
+}
+.attractions-container{
+    width:100vw;
+    height: 75px;
+    margin-bottom: 0px;
+    background-color:#444444;
+}
+
+.food-container{
+    width:100vw;
+    height: 75px;
+    margin-bottom: 0px;
+    background-color:#444444;
+}
