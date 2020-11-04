@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <base href="."/>
+        <title>
+            BPA NLC 2021
+        </title>
+        <link href="./css/budgetcalculator.css" rel= "stylesheet"/>
+    </head>
+
+    <body>
+      <div class="navbar"> 
+        <ul>
+          <li>
+            <a href="aboutus.html">About Us</a>
+          </li>  
+          <li>
+            <a href="Budget calculator.html">Budget Calculator</a>
+          </li>
+          <li>
+            <a href="food.html">Food</a>
+          </li>
+          <li>
+            <a href="transportation.html">Transportation</a>
+          </li>
+          <li>
+            <a href="attractions.html">Attractions</a>
+          </li>
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+        </ul>
+    </div>
+    <div class="banner">
+      <img src="./images /photo-1489875347897-49f64b51c1f8.jpeg"/>
+
+      <div class="banner-text">
+          <p class="banner-text-header">On a Budget? No Worries!</p>
+          
+      </div>
+
+            <div class="orlando-container">
+                <p>Check out our customized Budget Calculator! This includes all the avaliable Disney Restauraunts which will fit in your budget!</p>
+                
+
+            </div>
+            
+            <h1>Budget Calculator</h1>
+    <form onsubmit="return false">
+        <fieldset>
+            <p>
+                <label>Time of Day</label>
+                <select id="time">
+                    <option value="">--Please choose a time of day--</option>
+                    <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="dinner">Dinner</option>
+                    <option value="snack">Dessert/Snack</option>
+                </select>
+            </p>
+            <p>
+                <label for="sqft">Budget: </label>
+                <input type="range" min="0" max="100" name="budget" id="budget" value="0" oninput="thisBudget.value = budget.value">
+                <span>$</span><output name="thisBudget" for="budget">0</output>
+            </p>
+            <p>
+                <label>Which Park Do You Plan to Visit?</label>
+                <select id="parks">
+                    <option value="">--Please choose a park--</option>
+                    <option value="no park">No Park</option>
+                    <option value="epcot">Epcot</option>
+                    <option value="magic">Magic Kingdom</option>
+                    <option value="holly">Hollywood</option>
+                    <option value="animal">Animal</option>
+                </select>
+            </p>
+            <p>
+                <label>Which Mode of Transportation</label>
+                <select id="transport">
+                    <option value="">--Please choose a park--</option>
+                    <option value="walk">Walk</option>
+                    <option value="shuttle">Shuttle</option>
+                    <option value="uber">Uber/Lyft</option>
+                </select>
+            </p>
+            <button onclick="budgetCalc()">
+                Check Restaurants Suitable For You
+            </button>
+            <div id="div1">
+               
+            </div>
+            <script>
+                function budgetCalc()
+                {
+                var el = document.getElementById("div1");
+                while (el.firstChild) {
+                el.removeChild(el.firstChild);
+                }
+                var times = document.getElementById("time");
+                var time = times.options[times.selectedIndex].value;
+                var budget = document.getElementById("budget").value;
+                var parks = document.getElementById("parks");
+                var park = parks.options[parks.selectedIndex].value;
+                var transports = document.getElementById("transport");
+                var transport = transports.options[transports.selectedIndex].value;
+                if (transport == "shuttle" || transport == "uber")
+                {
+                budget = budget - 5;
+                }
+                var restaurants = [["Cosmic Ray's Starlight Café", "b", "low", "magic"], ["Les Halles Boulangerie-Patisserie", "b", "low", "epcot"],
+                ["Les Vins des Chefs de France", "b", "low", "epcot"], ["Rosie's All-American Café", "b", "low", "holly"], ["50's Prime Time Café", "b", "med", "holly"],
+                ["L'Artisan des Glaces", "b", "med", "epcot"], ["Le Petit Café", "b", "med", "none"], ["Main Street Bakery", "b", "med", "magic"], ["P & J's Southern Takeout", "b", "med", "none"],
+                ["Sunshine Seasons", "b", "med", "epcot"], ["Olivia's Cafe", "b", "high", "none"], ["Aloha Isle", "l", "low", "magic"], ["The Artist's Palette", "l", "low", "magic"],
+                ["B.B. Wolf's Sausage Co.", "l", "low", "none"], ["Backlot Express", "l", "low", "holly"], ["Blaze Fast-Fire'd Pizza", "l", "low", "none"], ["Capt. Cook's", "l", "low", "none"],
+                ["Centertown Market", "l", "low", "none"], ["Chicken Guy", "l", "low", "none"], ["Chip 'n' Dale's Deli", "l", "low", "none"], ["Choza de Margarita", "l", "low", "epcot"],
+                ["Cookes of Dublin", "l", "low", "none"], ["D-Luxe Burger", "l", "low", "none"], ["The Daily Poutine", "l", "low", "none"],
+                ["Disney Food Trucks", "l", "low", "none"], ["Docking Bay 7 Food and Cargo", "l", "low", "holly"], ["Earl Of Sandwich®", "l", "low", "none"], ["Everything POP Shopping & Dining", "l", "low", "none"],
+                ["Flame Tree Barbecue", "l", "low", "animal"], ["The Friar's Nook", "l", "low", "magic"],
+                ["Fuel", "l", "low", "none"], ["Gasparilla Island Grill", "l", "low", "none"],
+                ["Gaston's Tavern", "l", "low", "magic"], ["Hollywood Scoops", "l", "low", "holly"],["Isle of Java", "l", "low", "animal"],
+                ["La Cantina de San Angel", "l", "low", "epcot"], ["Liberty Square Market", "l", "low", "magic"],
+                ["Lotus Blossom Café", "l", "low", "epcot"], ["The Lunching Pad", "l", "low", "magic"], ["Morimoto Asia Street Food", "l", "low", "none"],
+                ["Pecos Bill Tall Tale Inn and Cafe", "l", "low", "magic"], ["Pinocchio Village Haus", "l", "low", "magic"],
+                ["Pizza Ponte", "l", "low", "none"], ["Pizza Window", "l", "low", "none"], ["PizzeRizzo", "l", "low", "holly"],
+                ["Pongu Pongu", "l", "low", "holly"], ["Primo Piatto", "l", "low", "none"], ["Restaurantosaurus", "l", "low", "none"],
+                ["Roaring Fork", "l", "low", "none"], ["Ronto Roasters", "l", "low", "holly"], ["Satu'li Canteen", "l", "low", "animal"],
+                ["Vivoli li Gelato", "l", "low", "none"], ["Westward Ho", "l", "low", "none"], ["Yorkshire County Fish Shop", "l", "low", "none"],
+                ["Chef Art Smith's Homecomin'", "l", "med", "none"], ["Chefs de France", "l", "med", "epcot"], ["Kabuki Cafe", "l", "med", "epcot"],
+                ["Katsura Grill", "l", "med", "epcot"], ["The Polite Pig", "l", "med", "none"], ["Terraline Crafted Italian", "l", "med", "none"],
+                ["AMC® Disney Springs 24 Dine-In Theatres", "d", "low", "none"], ["Dahlia Lounge", "d", "low", "none"],
+                ["The Edison", "d", "low", "none"], ["Enzo's Hideaway", "d", "low", "none"], ["The Fountain", "d", "low", "none"],
+                ["Global Marketplaces at the Taste of Epcot International Food & Wine Festival", "d", "low", "epcot"],
+                ["Jaleo by José Andrés", "d", "low", "none"], ["Kona Cafe", "d", "low", "none"], ["Paddlefish", "d", "low", "none"],
+                ["The Plaza Restaurant", "d", "low", "magic"], ["Rainforest Cafe® at Disney Springs Marketplace", "d", "low", "magic"],
+                ["Rose & Crown Dining Room", "d", "low", "epcot"], ["Sci-Fi Dine-In Theater Restaurant", "d", "low", "holly"],
+                ["Spice Road Table", "d", "low", "epcot"], ["Splitsville Dining Room", "d", "low", "none"],
+                ["T-REX ™", "d", "low", "none"], ["Tables in Wonderland", "d", "low", "none"], ["Tony's Town Square Restaurant", "d", "low", "animal"],
+                ["Trattoria al Forno", "d", "low", "none"], ["Via Napoli Ristorante e Pizzeria", "d", "low", "none"],
+                ["Whispering Canyon Cafe", "d", "low", "none"], ["Yak & Yeti™ Restaurant", "d", "low", "none"],
+                ["The BOATHOUSE®: Great Food, Waterfront Dining, Dream Boats™", "d", "med", "none"],
+                ["Chef Mickey's", "d", "med", "none"], ["City Works Eatery & Pour House", "d", "med", "none"],
+                ["Coral Reef Restaurant", "d", "med", "epcot"], ["Fresh Mediterranean Market", "d", "med", "none"],
+                ["Frontera Cocina", "d", "med", "none"], ["Garden Grove", "d", "med", "none"],
+                ["Grand Floridian Cafe", "d", "med", "none"], ["II Mulino", "d", "med", "none"],
+                ["Jungle Navigation Co. LTD Skipper Canteen", "d", "med", "none"],
+                ["Kimonos", "d", "med", "magic"], ["La Hacienda de San Angel", "d", "med", "epcot"],
+                ["Mama Melrose's Ristorante Italiano", "d", "med", "holly"], ["Maria & Enzo's Ristorante", "d", "med", "none"],
+                ["Oga's Cantina at the Walt Disney World Resort", "d", "med", "holly"], ["Paradiso 37, Taste of the Americas", "d", "med", "none"],
+                ["Planet Hollywood", "d", "med", "none"], ["Ravello", "d", "med", "none"], ["San Angel Inn Restaurante", "d", "med", "none"],
+                ["Sanaa", "d", "med", "none"], ["Teppan Edo", "d", "med", "epcot"], ["Tiffins Restaurant", "d", "med", "animal"],
+                ["Todd English's Bluezoo", "d", "med", "none"], ["Topolino's Terrace – Flavors of the Riviera", "d", "med", "none"],
+                ["Tutto Italia Ristorante", "d", "med", "none"], ["Be Our Guest Restaurant", "d", "high", "animal"],
+                ["Biergarten Restaurant", "d", "high", "epcot"], ["California Grill", "d", "high", "none"], ["Capa", "d", "high", "none"],
+                ["Cinderella's Royal Table", "d", "high", "magic"], ["Garden Grill Restaurant", "d", "high", "holly"],
+                ["Hollywood & Vine", "d", "high", "holly"], ["The Hollywood Brown Derby", , "d", "high", "holly"],
+                ["Le Cellier Steakhouse", "d", "high", "epcot"], ["Liberty Tree Tavern", "d", "high", "magic"], ["Narcoossee's", "d", "high", "none" ],
+                ["Shula's Steak House", "d", "high", "none"], ["STK Orlando", "d", "high", "none"],
+                ["The Wave... of American Flavors", "d", "high", "none"], ["Amorette's Patisserie", "s", "low", "none"],
+                ["BoardWalk Bakery", "s", "low", "none"], ["Chip 'n' Dale's Café", "s", "low", "none"],
+                ["Cool Wash", "s", "low", "epcot"], ["Dino-Bite Snacks", "s", "high", "animal"],
+                ["Ghirardelli Soda Fountain & Chocolate Shop", "s", "low", "none"], ["Harambe Fruit Market", "s", "low", "animal"],
+                ["Joffrey's Coffee & Tea Company", "s", "low", "none"], ["Joffrey's Handcrafted Smoothies Kiosk at Disney Springs Marketplace", "s", "low", "animal"],
+                ["Joy of Tea", "s", "low", "epcot"], ["Pineapple Lanai", "s", "low", "none"], ["Refreshment Outpost", "s", "low", "epcot"],
+                ["Sleepy Hollow", "s", "low", "none"], ["Sprinkles", "s", "low", "none"],
+                ["STARBUCKS® at Disney Springs Marketplace", "s", "low", "none"], ["Sunshine Churros at Disney Springs Marketplace", "s", "low", "none"],
+                ["Tamu Tamu Refreshments", "s", "low", "animal"], ["Trilo-Bites", "s", "low", "none"], ["The Trolley Car Café", "s", "low", "none"],
+                ["Anandapur Ice Cream Truck", "s", "med", "animal"], ["AristoCrêpes", "s", "med", "animal"], ["Auntie Gravity's Galactic Goodies", "s", "med", "magic"],
+                ["Beach Club Marketplace", "s", "med", "none"], ["Contempo Café", "s", "med", "none"], ["Creature Comforts", "s", "med", "animal"], ["Crepes des Chefs de France", "s", "med", "epcot"],
+                ["Fife & Drum Tavern", "s", "med", "epcot"], ["Funnel Cake", "s", "med", "epcot"], ["Häagen-Dazs® Kiosk at Disney Springs West Side", "s", "med", "none"],
+                ["Kringla Bakeri Og Kafe", "s", "med", "epcot"], ["The Land Cart", "s", "med", "epcot"], ["Marketplace Snacks", "s", "med", "none"],
+                ["Milk Stand", "s", "med", "holly"], ["Popcorn in Canada", "s", "med", "epcot"], ["Storybook Treats", "s", "med", "magic"],
+                ["Traveler's Café", "s", "med", "none"], ["Wetzel's Pretzels Kiosk at Disney Springs Marketplace", "s", "med", "none"],
+                ["Yak & Yeti™ Local Food Cafes", "s", "med", "none"], ["Beaches & Cream Soda Shop", "s", "high", "none"],
+                ["Erin McKenna's Bakery NYC", "s", "high", "none"], ["Gelati", "s", "high", "epcot"], ["Meadow Snack Bar", "s", "high", "none"]
+                ];
+
+                //breakfast
+                if (time == "breakfast") {
+
+                //boujee
+                if (budget >= 30) {
+                for(var i = 0; i < restaurants.length; i++) {
+
+                //epcot
+                if (park == "epcot") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "high" && (restaurants[i][3] == "epcot" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //magic
+                else if (park == "magic") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "high" && (restaurants[i][3] == "magic" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //holly
+                else if (park == "holly") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "high" && (restaurants[i][3] == "holly" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //animal
+                else if (park == "animal") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "high" && (restaurants[i][3] == "animal" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //no park
+                else if (park == "no park") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "high" && (restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                }
+                }
+                //end for loop for boujee
+
+                //med
+                if (budget >= 20) {
+                for(var i = 0; i < restaurants.length; i++) {
+
+                if (park == "epcot") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "high" && (restaurants[i][3] == "epcot" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //magic
+                else if (park == "magic") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "med" && (restaurants[i][3] == "magic" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //holly
+                else if (park == "holly") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "med" && (restaurants[i][3] == "holly" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //animal
+                else if (park == "animal") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "med" && (restaurants[i][3] == "animal" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //no park
+                else if (park == "no park") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "med" && (restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                }
+                }
+                //end for loop for med
+
+                //low
+                else {
+                for(var i = 0; i < restaurants.length; i++) {
+
+                if (park == "epcot") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "high" && (restaurants[i][3] == "epcot" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //magic
+                else if (park == "magic") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "low" && (restaurants[i][3] == "magic" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //holly
+                else if (park == "holly") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "low" && (restaurants[i][3] == "holly" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //animal
+                else if (park == "animal") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "low" && (restaurants[i][3] == "animal" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //no park
+                else if (park == "no park") {
+                if (restaurants[i][1] == "b" && restaurants[i][2] == "low" && (restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                }
+                }
+                //end for loop low
+                }
+                //end for loop breakfast
+
+                //lunch
+                else if (time == "lunch") {
+
+                if (budget >= 30) {
+                for(var i = 0; i < restaurants.length; i++) {
+
+                if (park == "epcot") {
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "med" && (restaurants[i][3] == "epcot" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //magic
+                else if (park == "magic") {
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "med" && (restaurants[i][3] == "magic" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //holly
+                else if (park == "holly") {
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "med" && (restaurants[i][3] == "holly" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //animal
+                else if (park == "animal") {
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "med" && (restaurants[i][3] == "animal" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //no park
+                else if (park == "no park") {
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "med" && (restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                } 
+                }
+                //end for loop boujee
+
+                if (budget >= 20) {
+                for(var i = 0; i < restaurants.length; i++) {
+
+                if (park == "epcot") {
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "med" && (restaurants[i][3] == "epcot" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //magic
+                else if (park == "magic") {
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "med" && (restaurants[i][3] == "magic" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //holly
+                else if (park == "holly") {
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "med" && (restaurants[i][3] == "holly" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //animal
+                else if (park == "animal") {
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "med" && (restaurants[i][3] == "animal" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //no park
+                else if (park == "no park") {
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "med" && (restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                }
+                }
+                //end for loop med
+
+                //low
+                else {
+
+                for(var i = 0; i < restaurants.length; i++) {
+                if (park == "epcot") {
+
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "low" && (restaurants[i][3] == "epcot" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //magic
+                else if (park == "magic") {
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "low" && (restaurants[i][3] == "magic" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //holly
+                else if (park == "holly") {
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "low" && (restaurants[i][3] == "holly" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //animal
+                else if (park == "animal") {
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "low" && (restaurants[i][3] == "animal" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //no park
+                else if (park == "no park") {
+                if (restaurants[i][1] == "l" && restaurants[i][2] == "low" && (restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                }
+                }
+                //end for loop low
+                }
+                //end for loop lunch
+
+
+                //dinner
+                if (time == "dinner") {
+
+                //boujee
+                if (budget >= 30) {
+                for(var i = 0; i < restaurants.length; i++) {
+
+                if (park == "epcot") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "high" && (restaurants[i][3] == "epcot" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //magic
+                else if (park == "magic") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "high" && (restaurants[i][3] == "magic" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //holly
+                else if (park == "holly") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "high" && (restaurants[i][3] == "holly" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //animal
+                else if (park == "animal") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "high" && (restaurants[i][3] == "animal" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                //no park
+                else if (park == "no park") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "high" && (restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                }
+                }
+                //end for loop boujee
+
+                //med
+                if (budget >= 20) {
+                for(var i = 0; i < restaurants.length; i++) {
+                if (park == "epcot") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "high" && (restaurants[i][3] == "epcot" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //magic
+                else if (park == "magic") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "med" && (restaurants[i][3] == "magic" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //holly
+                else if (park == "holly") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "med" && (restaurants[i][3] == "holly" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //animal
+                else if (park == "animal") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "med" && (restaurants[i][3] == "animal" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                //no park
+                else if (park == "no park") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "med" && (restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                }
+                } //end for loop med
+
+                //low
+                else {
+                for(var i = 0; i < restaurants.length; i++) {
+                if (park == "epcot") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "high" && (restaurants[i][3] == "epcot" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //magic
+                else if (park == "magic") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "low" && (restaurants[i][3] == "magic" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //holly
+                else if (park == "holly") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "low" && (restaurants[i][3] == "holly" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //animal
+                else if (park == "animal") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "low" && (restaurants[i][3] == "animal" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //no park
+                else if (park == "no park") {
+                if (restaurants[i][1] == "d" && restaurants[i][2] == "low" && (restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                }
+                }
+                //end for loop low
+                }
+                //end for loop for dinner
+
+                //snack
+                if (time == "snack") {
+
+                //boujee
+                if (budget >= 30) {
+                for(var i = 0; i < restaurants.length; i++) {
+
+                if (park == "epcot") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "high" && (restaurants[i][3] == "epcot" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //magic
+                else if (park == "magic") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "high" && (restaurants[i][3] == "magic" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //holly
+                else if (park == "holly") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "high" && (restaurants[i][3] == "holly" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //animal
+                else if (park == "animal") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "high" && (restaurants[i][3] == "animal" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                //no park
+                else if (park == "no park") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "high" && (restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                }
+                }
+                //end for loop boujee
+
+                //med
+                if (budget >= 20) {
+                for(var i = 0; i < restaurants.length; i++) {
+                if (park == "epcot") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "high" && (restaurants[i][3] == "epcot" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //magic
+                else if (park == "magic") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "med" && (restaurants[i][3] == "magic" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //holly
+                else if (park == "holly") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "med" && (restaurants[i][3] == "holly" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //animal
+                else if (park == "animal") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "med" && (restaurants[i][3] == "animal" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //no park
+                else if (park == "no park") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "med" && (restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                }
+                } //end for loop med
+
+                //low
+                else {
+                for(var i = 0; i < restaurants.length; i++) {
+
+                if (park == "epcot") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "high" && (restaurants[i][3] == "epcot" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //magic
+                else if (park == "magic") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "low" && (restaurants[i][3] == "magic" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //holly
+                else if (park == "holly") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "low" && (restaurants[i][3] == "holly" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //animal
+                else if (park == "animal") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "low" && (restaurants[i][3] == "animal" || restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+
+                //no park
+                else if (park == "no park") {
+                if (restaurants[i][1] == "s" && restaurants[i][2] == "low" && (restaurants[i][3] == "none")) {
+                var para = document.createElement("p");
+                var node = document.createTextNode(restaurants[i][0]);
+                para.appendChild(node);
+                var element = document.getElementById("div1");
+                element.appendChild(para);
+                }
+                }
+                }
+                }
+                //end for loop low
+                }
+                //end for loop for snack
+
+
+                
+                } 
+                //end function
+
+            </script>
+        </fieldset>
+    </form>
+                
+
+            
+
+            <div class="banner">
+                <img src="./images/Themeparks.jpg"/>
+            </div>
+
+            <div class="orlando-container-text">
+                <p>Powered by SHS Website Design Team 1</p>
+            </div>
+            
+
+    
+    </body>
+
+</html> 
