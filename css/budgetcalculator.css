@@ -6,6 +6,7 @@ html * {
     padding: 0px; 
     font-family: unset;
 }
+
 .navbar{
     height: 8vw;
     width: 100vw;
@@ -53,7 +54,6 @@ html * {
     background-color:gray;
     cursor: pointer;
 }
-
 .banner{
     width:100vw;
     height: auto;
@@ -61,16 +61,16 @@ html * {
 
 .banner img{
     width:100vw;
-    height: 100%;
+    height: 40vw;
     z-index: 100;
    
 
 }
 .banner .banner-text{
     position: absolute;
-    bottom: 77%;
+    bottom: 55%;
     width: 100%;
-    font-size: 2.5vw;
+    font-size: 4vw;
     text-align: center;
    
     
@@ -87,7 +87,7 @@ html * {
     
 }
 .banner-text-header{
-    font-size: 130%;
+    font-size: 150%;
     color: white;
     
     
@@ -95,21 +95,22 @@ html * {
 
 .orlando-container {
     width:100vw;
-    height: 30;
+    height: 15vw;
     background-color:#444444
+
 } 
 .orlando-container p{
     color:white;
     text-align: center;
     font-size: 3vw;
-    margin-top: 7%;
-    margin-bottom: 7%;
-    font-weight:0.9em
+    margin:10%;
 }
 .orlando-container p.band-container-content{
     width: 700px;
     margin-left: auto;
     margin-right:auto; 
+    
+    
 
 }
 
@@ -123,57 +124,12 @@ html * {
     color:white;
     text-align:center;
     font-size: 1.0em;
-    
 
 }
 
-.orlando-attractions {
-    width:100vw;
-    margin-left:auto;
-    margin-right:auto;
-    background-color: black;
-    overflow:hidden;
-    
-}
-.orlando-attractions ul {
-    widows: 100%;
-    list-style-type: none;
-    height: 100px;
-    
-}
-.orlando-attractions ul li {
-    float: left;
-    width:33%;
-    text-align: center;
-    font-size: 3.0vw;
-    font-weight: 300;
-    color: white;
-    
-
-}
-.orlando-attractions ul li img{
-    width: 80%;
-    height:60%;
-
-}
-.orlando-attractions-subtitles{
-    font-size: 20px;
-    margin: 10%;
-}
-.attractions-container{
-    width:100vw;
-    height: 75px;
-    margin-bottom: 0px;
-    background-color: black;
-}
-
-.food-container{
-    width:100vw;
-    height: 75px;
-    margin-bottom: 0px;
-    background-color: black;
-    
-}
+video {
+    object-fit: fill;
+  }
 
 .footer-text{
     color:white;
