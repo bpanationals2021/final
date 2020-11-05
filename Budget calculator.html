@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <base href="."/>
+        <title>
+            BPA NLC 2021
+        </title>
+        <link href="./css /budgetcalculator.css" rel= "stylesheet"/>
+        <style>
+            .centerCalc {
+                margin: auto;
+                width: 60%;
+                border: 3px solid #4C4645;
+                padding: 10px;
+                background-color: #D7D2D1;
+                margin-bottom: 10vw ;
+            }
+    
+            .centerText {
+                margin: auto;
+                width: 60%;
+                color:white;
+                text-align: center;
+                
+            }
+            
+          a.one:link {
+            color: white;
+            background-color: transparent;
+            text-decoration: underline;
+          }
+          a.one:visited {
+            color: white;
+            background-color: transparent;
+            text-decoration: none;
+          }
+          a.one:hover {
+            color:gray;
+            background-color: transparent;
+            text-decoration: underline;
+          }
+          a.one:active {
+            color: gray;
+            background-color: transparent;
+            text-decoration: underline;
+          }
+    
+        </style>
+    </head>
+
+
+    <body>
+      <div class="navbar"> 
+        <ul>
+          <li>
+            <a href="aboutus.html">Contact Us</a>
+          </li>  
+          <li>
+            <a href="Budget calculator.html">Budget Calculator</a>
+          </li>
+          <li>
+            <a href="food.html">Food</a>
+          </li>
+          <li>
+            <a href="transportation.html">Transportation</a>
+          </li>
+          <li>
+            <a href="attractions.html">Attractions</a>
+          </li>
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+        </ul>
+    </div>
+    <div class="banner">
+      <img src="./images /Screen Shot 2020-11-04 at 7.42.32 PM.png"/>
+
+      <div class="banner-text">
+          
+          
+      </div>
+
+            <div class="orlando-container">
+                <p>Check out our customized Budget Calculator! This includes all the avaliable Disney Restauraunts which will fit in your budget!</p>
+                
+
+            </div>
+            
+            <h1 class="centerText">Budget Calculator</h1>
+    <form onsubmit="return false">
+        <fieldset  class="centerCalc">
+            <p>
+                <label>Time of Day</label>
+                <select id="time">
+                    <option value="">--Please choose a time of day--</option>
+                    <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="dinner">Dinner</option>
+                    <option value="snack">Dessert/Snack</option>
+                </select>
+            </p>
+            <p>
+                <label for="sqft">Budget: </label>
+                <input type="range" min="0" max="100" name="budget" id="budget" value="0" oninput="thisBudget.value = budget.value">
+                <span>$</span><output name="thisBudget" for="budget">0</output>
+            </p>
+            <p>
+                <label>Which Park Do You Plan to Visit?</label>
+                <select id="parks">
+                    <option value="">--Please choose a park--</option>
+                    <option value="no park">No Park</option>
+                    <option value="epcot">Epcot</option>
+                    <option value="magic">Magic Kingdom</option>
+                    <option value="holly">Hollywood</option>
+                    <option value="animal">Animal</option>
+                </select>
+            </p>
+            <p>
+                <label>Which Mode of Transportation</label>
+                <select id="transport">
+                    <option value="">--Please choose a park--</option>
+                    <option value="walk">Walk</option>
+                    <option value="shuttle">Shuttle</option>
+                    <option value="uber">Uber/Lyft</option>
+                </select>
+            </p>
+            <button onclick="budgetCalc()">
+                Check Restaurants Suitable For You
+            </button>
+            <div id="div1">
+
+            </div>
+            <script>
+                function budgetCalc()
+                {
+                var el = document.getElementById("div1");
+                while (el.firstChild) {
+                el.removeChild(el.firstChild);
+                }
+                var times = document.getElementById("time");
+                var time = times.options[times.selectedIndex].value;
+                var budget = document.getElementById("budget").value;
+                var parks = document.getElementById("parks");
+                var park = parks.options[parks.selectedIndex].value;
+                var transports = document.getElementById("transport");
+                var transport = transports.options[transports.selectedIndex].value;
+                if (transport == "shuttle" || transport == "uber")
+                {
+                budget = budget - 5;
+                }
+                var restaurants = [["Cosmic Ray's Starlight Café", "b", "low", "magic", "https://disneyworld.disney.go.com/dining/magic-kingdom/cosmic-ray-starlight-cafe/menus/"], ["Les Halles Boulangerie-Patisserie", "b", "low", "epcot", "https://disneyworld.disney.go.com/dining/epcot/les-halles-boulangerie-patisserie/"],
+                ["Les Vins des Chefs de France", "b", "low", "epcot", "https://disneyworld.disney.go.com/dining/epcot/les-vins-des-chefs-de-france/menus/"], ["Rosie's All-American Café", "b", "low", "holly", "https://disneyworld.disney.go.com/dining/epcot/les-vins-des-chefs-de-france/menus/"], ["50's Prime Time Café", "b", "med", "holly", "https://disneyworld.disney.go.com/dining/hollywood-studios/50s-prime-time-cafe/"],
+                ["L'Artisan des Glaces", "b", "med", "epcot", "https://disneyworld.disney.go.com/dining/epcot/l-artisan-des-glaces/menus/"], ["Le Petit Café", "b", "med", "none", "https://www.yelp.com/biz/le-petit-caf%C3%A9-orlando"], ["Main Street Bakery", "b", "med", "magic", "https://disneyworld.disney.go.com/dining/magic-kingdom/main-street-bakery/menus/"], ["P & J's Southern Takeout", "b", "med", "none", "https://disneyworld.disney.go.com/dining/cabins-at-fort-wilderness-resort/p-and-js-southern-takeout/"],
+                ["Sunshine Seasons", "b", "med", "epcot", "https://disneyworld.disney.go.com/dining/epcot/sunshine-seasons/"], ["Olivia's Cafe", "b", "high", "none", "https://disneyworld.disney.go.com/dining/old-key-west-resort/olivia-cafe/menus/"], ["Aloha Isle", "l", "low", "magic", "https://disneyworld.disney.go.com/dining/magic-kingdom/aloha-isle/menus/"], ["The Artist's Palette", "l", "low", "magic", "https://disneyworld.disney.go.com/dining/saratoga-springs-resort-and-spa/artists-palette/menus/"],
+                ["B.B. Wolf's Sausage Co.", "l", "low", "none", "https://www.disneysprings.com/dining/b-b-wolfs-sausage-co/"], ["Backlot Express", "l", "low", "holly", "https://disneyworld.disney.go.com/dining/hollywood-studios/backlot-express/menus/"], ["Blaze Fast-Fire'd Pizza", "l", "low", "none", "https://www.disneysprings.com/dining/blaze-fast-fired-pizza/"], ["Capt. Cook's", "l", "low", "none", "https://disneyworld.disney.go.com/dining/polynesian-resort/capt-cooks/menus/"],
+                ["Centertown Market", "l", "low", "none", "https://disneyworld.disney.go.com/dining/caribbean-beach-resort/centertown-market/menus/"], ["Chicken Guy", "l", "low", "none", "https://chickenguy.com/"], ["Chip 'n' Dale's Deli", "l", "low", "none", "https://disneyworld.disney.go.com/dining/polynesian-resort/chip-n-dales-deli/menus/"], ["Choza de Margarita", "l", "low", "epcot", "https://disneyworld.disney.go.com/dining/epcot/choza-de-margarita/menus/"],
+                ["Cookes of Dublin", "l", "low", "none", "https://www.disneysprings.com/dining/cookes-of-dublin/"], ["D-Luxe Burger", "l", "low", "none", "https://www.disneysprings.com/dining/d-luxe-burger/"], ["The Daily Poutine", "l", "low", "none", "https://www.disneysprings.com/dining/the-daily-poutine/"],
+                ["Disney Food Trucks", "l", "low", "none", "https://www.disneysprings.com/dining/disney-food-trucks/"], ["Docking Bay 7 Food and Cargo", "l", "low", "holly", "https://disneyworld.disney.go.com/dining/hollywood-studios/docking-bay-7-food-and-cargo/"], ["Earl Of Sandwich®", "l", "low", "none", "https://www.disneysprings.com/dining/earl-of-sandwich/"], ["Everything POP Shopping & Dining", "l", "low", "none", "https://disneyworld.disney.go.com/dining/pop-century-resort/everything-pop-dining/"],
+                ["Flame Tree Barbecue", "l", "low", "animal", "https://disneyworld.disney.go.com/dining/animal-kingdom/flame-tree-barbecue/"], ["The Friar's Nook", "l", "low", "magic","https://disneyworld.disney.go.com/dining/magic-kingdom/friars-nook/"],
+                ["Fuel", "l", "low", "none", "https://www.tripadvisor.com/Restaurant_Review-g34515-d12944684-Reviews-Fuel-Orlando_Florida.html"], ["Gasparilla Island Grill", "l", "low", "none", "https://disneyworld.disney.go.com/dining/grand-floridian-resort-and-spa/gasparilla-island-grill/"],
+                ["Gaston's Tavern", "l", "low", "magic", "https://disneyworld.disney.go.com/dining/magic-kingdom/gastons-tavern/"], ["Hollywood Scoops", "l", "low", "holly", "https://disneyworld.disney.go.com/dining/hollywood-studios/hollywood-scoops/"],["Isle of Java", "l", "low", "animal", "https://disneyworld.disney.go.com/dining/animal-kingdom/isle-of-java/"],
+                ["La Cantina de San Angel", "l", "low", "epcot", "https://disneyworld.disney.go.com/dining/epcot/cantina-de-san-angel/"], ["Liberty Square Market", "l", "low", "magic", "https://disneyworld.disney.go.com/dining/magic-kingdom/liberty-square-market/"],
+                ["Lotus Blossom Café", "l", "low", "epcot", "https://disneyworld.disney.go.com/dining/epcot/lotus-blossom-cafe/"], ["The Lunching Pad", "l", "low", "magic", "https://disneyworld.disney.go.com/dining/magic-kingdom/lunching-pad/"], ["Morimoto Asia Street Food", "l", "low", "none", "https://www.disneysprings.com/dining/morimoto-asia-street-food/"],
+                ["Pecos Bill Tall Tale Inn and Cafe", "l", "low", "magic", "https://disneyworld.disney.go.com/dining/magic-kingdom/pecos-bill-tall-tale-inn-and-cafe/"], ["Pinocchio Village Haus", "l", "low", "magic", "https://disneyworld.disney.go.com/dining/magic-kingdom/pinocchio-village-haus/"],
+                ["Pizza Ponte", "l", "low", "none", "https://www.patinagroup.com/pizza-ponte"], ["Pizza Window", "l", "low", "none", "https://disneyworld.disney.go.com/dining/boardwalk/pizza-window/"], ["PizzeRizzo", "l", "low", "holly", "https://disneyworld.disney.go.com/dining/hollywood-studios/pizzerizzo/"],
+                ["Pongu Pongu", "l", "low", "holly", "https://disneyworld.disney.go.com/dining/animal-kingdom/pongu-pongu/"], ["Primo Piatto", "l", "low", "none", "https://disneyworld.disney.go.com/dining/riviera-resort/primo-piatto/menus/"], ["Restaurantosaurus", "l", "low", "none", "https://disneyworld.disney.go.com/dining/animal-kingdom/restaurantosaurus/"],
+                ["Roaring Fork", "l", "low", "none", "https://disneyworld.disney.go.com/dining/wilderness-lodge-resort/roaring-fork/menus/"], ["Ronto Roasters", "l", "low", "holly", "https://disneyworld.disney.go.com/dining/hollywood-studios/ronto-roasters/"], ["Satu'li Canteen", "l", "low", "animal", "https://disneyworld.disney.go.com/dining/animal-kingdom/satuli-canteen/"],
+                ["Vivoli li Gelato", "l", "low", "none", "https://www.disneysprings.com/dining/vivoli-il-gelato/"], ["Westward Ho", "l", "low", "none", "https://disneyworld.disney.go.com/dining/magic-kingdom/westward-ho/"], ["Yorkshire County Fish Shop", "l", "low", "none", "https://disneyworld.disney.go.com/dining/epcot/yorkshire-county-fish-shop/"],
+                ["Chef Art Smith's Homecomin'", "l", "med", "none", "https://disneyworld.disney.go.com/dining/disney-springs/chef-art-smiths-homecomin/"], ["Chefs de France", "l", "med", "epcot", "https://disneyworld.disney.go.com/dining/epcot/chefs-de-france/"], ["Kabuki Cafe", "l", "med", "epcot", "https://disneyworld.disney.go.com/dining/epcot/kabuki-cafe/"],
+                ["Katsura Grill", "l", "med", "epcot", "https://disneyworld.disney.go.com/dining/epcot/katsura-grill/menus/"], ["The Polite Pig", "l", "med", "none", "https://politepig.com/"], ["Terraline Crafted Italian", "l", "med", "none", "https://www.terralinacrafteditalian.com/"],
+                ["AMC® Disney Springs 24 Dine-In Theatres", "d", "low", "none", "https://www.amctheatres.com/movie-theatres/orlando-daytona-beach/amc-dine-in-disney-springs-24"], ["Dahlia Lounge", "d", "low", "none", "https://disneyworld.disney.go.com/dining/coronado-springs-resort/dahlia-lounge/"],
+                ["The Edison", "d", "low", "none", "https://www.disneysprings.com/dining/the-edison/?CMP=KNC-FY21_WDW_TRA_CFL_W365_RDN_DSD_Restaurants_Phrase%7CG%7C5211013.RR.AM.01.01%7CMM86ROM%7CBR%7C447081545002&keyword_id=kwd-414171797183%7Cdc%7Cthe%20edison%20disney%7C447081545002%7Cp%7C5060:3%7C&gclid=CjwKCAiAnIT9BRAmEiwANaoE1Tn_k5QIN3x0tLxXzXYdmDzCvWMCuJOY7eK0PI2AdzqFuHOFW8KxsBoCTa8QAvD_BwE"], ["Enzo's Hideaway", "d", "low", "none", "https://www.disneysprings.com/dining/enzos-hideaway/"], ["The Fountain", "d", "low", "none", "https://disneyworld.disney.go.com/dining/dolphin-hotel/fountain/"],
+                ["Global Marketplaces at the Taste of Epcot International Food & Wine Festival", "d", "low", "epcot", "https://disneyworld.disney.go.com/dining/epcot/taste-epcot-food-wine-festival-marketplaces/"],
+                ["Jaleo by José Andrés", "d", "low", "none", "https://www.jaleo.com/location/jaleo-disney-springs/"], ["Kona Cafe", "d", "low", "none", "https://disneyworld.disney.go.com/dining/polynesian-resort/kona-cafe/"], ["Paddlefish", "d", "low", "none", "https://www.disneysprings.com/dining/paddlefish/"],
+                ["The Plaza Restaurant", "d", "low", "magic", "https://disneyworld.disney.go.com/dining/magic-kingdom/plaza-restaurant/"], ["Rainforest Cafe® at Disney Springs Marketplace", "d", "low", "magic", "https://www.disneysprings.com/dining/rainforest-cafe-at-disney-springs-marketplace/"],
+                ["Rose & Crown Dining Room", "d", "low", "epcot", "https://disneyworld.disney.go.com/dining/epcot/rose-and-crown-dining-room/"], ["Sci-Fi Dine-In Theater Restaurant", "d", "low", "holly", "https://disneyworld.disney.go.com/dining/hollywood-studios/sci-fi-dine-in-theater/"],
+                ["Spice Road Table", "d", "low", "epcot", "https://disneyworld.disney.go.com/dining/epcot/spice-road-table/"], ["Splitsville Dining Room", "d", "low", "none", "https://www.disneysprings.com/dining/splitsville-dining-room/"],
+                ["T-REX ™", "d", "low", "none", "https://www.trexcafe.com/"], ["Tables in Wonderland", "d", "low", "none", "https://disneyworld.disney.go.com/dining/tables-in-wonderland/"], ["Tony's Town Square Restaurant", "d", "low", "animal", "https://disneyworld.disney.go.com/dining/magic-kingdom/tonys-town-square-restaurant/"],
+                ["Trattoria al Forno", "d", "low", "none", "https://disneyworld.disney.go.com/dining/boardwalk/trattoria-al-forno/"], ["Via Napoli Ristorante e Pizzeria", "d", "low", "none", "https://disneyworld.disney.go.com/dining/epcot/via-napoli/"],
+                ["Whispering Canyon Cafe", "d", "low", "none", "https://disneyworld.disney.go.com/dining/wilderness-lodge-resort/whispering-canyon-cafe/"], ["Yak & Yeti™ Restaurant", "d", "low", "none", "https://disneyworld.disney.go.com/dining/animal-kingdom/yak-and-yeti-restaurant/"],
+                ["The BOATHOUSE®: Great Food, Waterfront Dining, Dream Boats™", "d", "med", "none", "https://www.theboathouseorlando.com/"],
+                ["Chef Mickey's", "d", "med", "none", "https://disneyworld.disney.go.com/dining/contemporary-resort/chef-mickeys/menus/"], ["City Works Eatery & Pour House", "d", "med", "none", "https://www.cityworksrestaurant.com/disneysprings/"],
+                ["Coral Reef Restaurant", "d", "med", "epcot", "https://disneyworld.disney.go.com/dining/epcot/coral-reef-restaurant/menus/"], ["Fresh Mediterranean Market", "d", "med", "none", "https://www.swandolphinrestaurants.com/fresh/"],
+                ["Frontera Cocina", "d", "med", "none", "http://www.fronteracocina.com/"], ["Garden Grove", "d", "med", "none", "https://ggcity.org/"],
+                ["Grand Floridian Cafe", "d", "med", "none", "https://disneyworld.disney.go.com/dining/grand-floridian-resort-and-spa/grand-floridian-cafe/"], ["II Mulino", "d", "med", "none", "https://disneyworld.disney.go.com/dining/swan-hotel/il-mulino-new-york-trattoria/"],
+                ["Jungle Navigation Co. LTD Skipper Canteen", "d", "med", "none", "https://disneyworld.disney.go.com/dining/magic-kingdom/jungle-navigation-skipper-canteen/"],
+                ["Kimonos", "d", "med", "magic", "https://www.swandolphinrestaurants.com/kimonos/"], ["La Hacienda de San Angel", "d", "med", "epcot", "https://disneyworld.disney.go.com/dining/epcot/hacienda-de-san-angel/"],
+                ["Mama Melrose's Ristorante Italiano", "d", "med", "holly", "https://disneyworld.disney.go.com/dining/hollywood-studios/mama-melrose-ristorante-italiano/"], ["Maria & Enzo's Ristorante", "d", "med", "none", "https://disneyworld.disney.go.com/dining/disney-springs/maria-enzo/"],
+                ["Oga's Cantina at the Walt Disney World Resort", "d", "med", "holly", "https://disneyworld.disney.go.com/dining/hollywood-studios/ogas-cantina/"], ["Paradiso 37, Taste of the Americas", "d", "med", "none", "https://www.disneysprings.com/dining/paradiso-37-taste-of-the-americas/?CMP=KNC-FY21_WDW_TRA_CFL_W365_RDN_DSD_Restaurants_Phrase%7CG%7C5211013.RR.AM.01.01%7CMM86ROM%7CBR%7C452744530473&keyword_id=kwd-337281020622%7Cdc%7Cparadiso%2037%7C452744530473%7Cp%7C5060:3%7C&gclid=CjwKCAiAnIT9BRAmEiwANaoE1Y4AZmfm8-TylmBdRi1HZm3dmBEhXhzmzlltHZdbtlIYgqhIxhiM7xoCGtgQAvD_BwE"],
+                ["Planet Hollywood", "d", "med", "none", "https://www.disneysprings.com/dining/planet-hollywood/?CMP=KNC-FY21_WDW_TRA_CFL_W365_RDN_DSD_Restaurants_Exact%7CG%7C5211013.RR.AM.01.01%7CMM86ROM%7CBR%7C447081516403&keyword_id=kwd-325664273983%7Cdc%7C%2Bplanet%20%2Bhollywood%7C447081516403%7Ce%7C5060:3%7C&gclid=CjwKCAiAnIT9BRAmEiwANaoE1VrMnhUGi4a3rUcREtEvoHf6qyn5lcmq6n_7zaAH4OtWf5adrWs1-xoCQiIQAvD_BwE"], ["Ravello", "d", "med", "none", "https://www.fourseasons.com/orlando/dining/restaurants/ravello/"], ["San Angel Inn Restaurante", "d", "med", "none", "https://disneyworld.disney.go.com/dining/epcot/san-angel-inn-restaurante/"],
+                ["Sanaa", "d", "med", "none", "https://disneyworld.disney.go.com/dining/animal-kingdom-villas-kidani/sanaa/"], ["Teppan Edo", "d", "med", "epcot", "https://disneyworld.disney.go.com/dining/epcot/teppan-edo/"], ["Tiffins Restaurant", "d", "med", "animal", "https://disneyworld.disney.go.com/dining/animal-kingdom/tiffins/"],
+                ["Todd English's Bluezoo", "d", "med", "none", "https://www.swandolphinrestaurants.com/bluezoo/index.html"], ["Topolino's Terrace – Flavors of the Riviera", "d", "med", "none", "https://disneyworld.disney.go.com/dining/riviera-resort/topolinos-terrace/"],
+                ["Tutto Italia Ristorante", "d", "med", "none", "https://disneyworld.disney.go.com/dining/epcot/tutto-italia-ristorante/"], ["Be Our Guest Restaurant", "d", "high", "animal", "https://disneyworld.disney.go.com/dining/magic-kingdom/be-our-guest-restaurant/"],
+                ["Biergarten Restaurant", "d", "high", "epcot", "https://disneyworld.disney.go.com/dining/epcot/biergarten-restaurant/"], ["California Grill", "d", "high", "none", "https://disneyworld.disney.go.com/dining/contemporary-resort/california-grill/"], ["Capa", "d", "high", "none", "https://www.fourseasons.com/orlando/dining/restaurants/capa/"],
+                ["Cinderella's Royal Table", "d", "high", "magic", "https://disneyworld.disney.go.com/dining/magic-kingdom/cinderella-royal-table/"], ["Garden Grill Restaurant", "d", "high", "holly", "https://disneyworld.disney.go.com/dining/epcot/garden-grill-restaurant/"],
+                ["Hollywood & Vine", "d", "high", "holly", "https://disneyworld.disney.go.com/dining/hollywood-studios/hollywood-and-vine/"], ["The Hollywood Brown Derby", "d", "high", "holly", "https://disneyworld.disney.go.com/dining/hollywood-studios/hollywood-brown-derby/"],
+                ["Le Cellier Steakhouse", "d", "high", "epcot", "https://disneyworld.disney.go.com/dining/epcot/le-cellier-steakhouse/?ef_id=CjwKCAiAnIT9BRAmEiwANaoE1cZMOMYcUY2jSCnNYQ6mDdQQYPcPhoLFIOxgC47t9T_JuQhH4GhqBxoCbv4QAvD_BwE:G:s&s_kwcid=AL!5060!3!459961230179!e!!g!!le%20cellier%20steakhouse&CMP=KNC-FY21_WDW_TRA_FLR_W365_RDN_RSRT_Product_LeCellier_Steakhouse_Exact%7CG%7C5211013.RR.AM.01.01%7CMACMUTZ%7CBR%7C459961230179&keyword_id=kwd-337842205320%7Cdc%7Cle%20cellier%20steakhouse%7C459961230179%7Ce%7C5060:3%7C&gclid=CjwKCAiAnIT9BRAmEiwANaoE1cZMOMYcUY2jSCnNYQ6mDdQQYPcPhoLFIOxgC47t9T_JuQhH4GhqBxoCbv4QAvD_BwE"], ["Liberty Tree Tavern", "d", "high", "magic", "https://disneyworld.disney.go.com/dining/magic-kingdom/liberty-tree-tavern/"], ["Narcoossee's", "d", "high", "none", "https://disneyworld.disney.go.com/dining/grand-floridian-resort-and-spa/narcoossees/"],
+                ["Shula's Steak House", "d", "high", "none", "https://shulas.com/"], ["STK Orlando", "d", "high", "none", "https://stksteakhouse.com/venues/orlando/"],
+                ["The Wave... of American Flavors", "d", "high", "none", "https://disneyworld.disney.go.com/dining/contemporary-resort/wave-restaurant-of-american-flavors/"], ["Amorette's Patisserie", "s", "low", "none", "https://www.disneysprings.com/dining/amorettes-patisserie/"],
+                ["BoardWalk Bakery", "s", "low", "none", "https://disneyworld.disney.go.com/dining/boardwalk/boardwalk-bakery/"], ["Chip 'n' Dale's Café", "s", "low", "none", "https://disneyworld.disney.go.com/dining/saratoga-springs-resort-and-spa/chip-n-dales-cafe/menus/"],
+                ["Cool Wash", "s", "low", "epcot", "https://disneyworld.disney.go.com/dining/epcot/test-track-cool-wash/"], ["Dino-Bite Snacks", "s", "high", "animal", "https://disneyworld.disney.go.com/dining/animal-kingdom/dino-bite-snacks/menus/"],
+                ["Ghirardelli Soda Fountain & Chocolate Shop", "s", "low", "none", "https://www.disneysprings.com/dining/ghirardelli-ice-cream-chocolate-shop/"], ["Harambe Fruit Market", "s", "low", "animal", "https://disneyworld.disney.go.com/dining/animal-kingdom/harambe-fruit-market/menus/"],
+                ["Joffrey's Coffee & Tea Company", "s", "low", "none", "https://joffreys.com/"], ["Joffrey's Handcrafted Smoothies Kiosk at Disney Springs Marketplace", "s", "low", "animal", "https://www.disneysprings.com/dining/joffreys-handcrafted-smoothies-marketplace/"],
+                ["Joy of Tea", "s", "low", "epcot", "https://disneyworld.disney.go.com/dining/epcot/joy-of-tea/menus/"], ["Pineapple Lanai", "s", "low", "none", "https://disneyworld.disney.go.com/dining/polynesian-resort/pineapple-lanai/"], ["Refreshment Outpost", "s", "low", "epcot", "https://disneyworld.disney.go.com/dining/epcot/africa-outpost/menus/"],
+                ["Sleepy Hollow", "s", "low", "none", "https://disneyworld.disney.go.com/dining/magic-kingdom/sleepy-hollow/"], ["Sprinkles", "s", "low", "none", "https://sprinkles.com/"],
+                ["STARBUCKS® at Disney Springs Marketplace", "s", "low", "none", "https://www.disneysprings.com/dining/starbucks-at-disney-springs-marketplace/?CMP=KNC-FY21_WDW_TRA_CFL_W365_RDN_DSD_Restaurants_Phrase%7CG%7C5211013.RR.AM.01.01%7CMM86ROM%7CBR%7C452744530470&keyword_id=kwd-414171796783%7Cdc%7Cstarbucks%20at%20disney%20springs%7C452744530470%7Cp%7C5060:3%7C&gclid=CjwKCAiAnIT9BRAmEiwANaoE1R7Ui91JV_-H5XQV6NNuXEQFMbbwD8222wShth87QXdB_hn_F78sWRoCo5MQAvD_BwE"], ["Sunshine Churros at Disney Springs Marketplace", "s", "low", "none", "https://www.disneysprings.com/dining/sunshine-churros-kiosk-marketplace/"],
+                ["Tamu Tamu Refreshments", "s", "low", "animal", "https://disneyworld.disney.go.com/dining/animal-kingdom/tamu-tamu-refreshments/"], ["Trilo-Bites", "s", "low", "none", "https://disneyworld.disney.go.com/dining/animal-kingdom/trilo-bites/"], ["The Trolley Car Café", "s", "low", "none", "https://disneyworld.disney.go.com/dining/hollywood-studios/trolley-car-cafe/"],
+                ["Anandapur Ice Cream Truck", "s", "med", "animal", "https://disneyworld.disney.go.chttps://www.disneysprings.com/dining/aristocrepes/om/dining/animal-kingdom/anandapur-ice-cream-truck/"], ["AristoCrêpes", "s", "med", "animal", "https://www.disneysprings.com/dining/aristocrepes/"], ["Auntie Gravity's Galactic Goodies", "s", "med", "magic", "https://disneyworld.disney.go.com/dining/magic-kingdom/auntie-gravitys-galactic-goodies/"],
+                ["Beach Club Marketplace", "s", "med", "none", "https://disneyworld.disney.go.com/dining/beach-club-resort/beach-club-marketplace/"], ["Contempo Café", "s", "med", "none", "https://disneyworld.disney.go.com/dining/contemporary-resort/contempo-cafe/"], ["Creature Comforts", "s", "med", "animal", "https://creaturecomfortsbeer.com/"], ["Crepes des Chefs de France", "s", "med", "epcot", "https://disneyworld.disney.go.com/dining/epcot/crepes-des-chefs-de-france/"],
+                ["Fife & Drum Tavern", "s", "med", "epcot", "https://disneyworld.disney.go.com/dining/epcot/fife-and-drum-tavern/menus/"], ["Funnel Cake", "s", "med", "epcot", "https://disneyworld.disney.go.com/dining/epcot/funnel-cake/"], ["Häagen-Dazs® Kiosk at Disney Springs West Side", "s", "med", "none", "https://www.disneysprings.com/dining/haagen-dazs-at-downtown-disney-west-side/"],
+                ["Kringla Bakeri Og Kafe", "s", "med", "epcot", "https://disneyworld.disney.go.com/dining/epcot/kringla-bakeri-og-kafe/"], ["The Land Cart", "s", "med", "epcot", "https://disneyworld.disney.go.com/dining/epcot/the-land-cart/menus/"], ["Marketplace Snacks", "s", "med", "none", "https://www.disneysprings.com/dining/marketplace-snacks/"],
+                ["Milk Stand", "s", "med", "holly", "https://disneyland.disney.go.com/dining/disneyland/milk-stand/"], ["Popcorn in Canada", "s", "med", "epcot", "https://disneyworld.disney.go.com/dining/epcot/popcorn-at-canada-pavilion/menus/"], ["Storybook Treats", "s", "med", "magic", "https://disneyworld.disney.go.com/dining/magic-kingdom/storybook-treats/"],
+                ["Traveler's Café", "s", "med", "none", "https://www.disneyfoodblog.com/travelers-cafe/"], ["Wetzel's Pretzels Kiosk at Disney Springs Marketplace", "s", "med", "none", "https://www.disneysprings.com/dining/wetzels-pretzels-at-disney-springs-marketplace/"],
+                ["Yak & Yeti™ Local Food Cafes", "s", "med", "none", "https://disneyworld.disney.go.com/dining/animal-kingdom/yak-and-yeti-local-foods-cafe/"], ["Beaches & Cream Soda Shop", "s", "high", "none", "https://disneyworld.disney.go.com/dining/beach-club-resort/beaches-and-cream-soda-shop/"],
+                ["Erin McKenna's Bakery NYC", "s", "high", "none","https://www.erinmckennasbakery.com/"], ["Gelati", "s", "high", "epcot", "https://disneyworld.disney.go.com/dining/epcot/gelati/"], ["Meadow Snack Bar", "s", "high", "none", "https://disneyworld.disney.go.com/dining/cabins-at-fort-wilderness-resort/meadow-snack-bar/"]
+                ];
+
+                var arr = [];
+                var newBudget = "";
+                var newTime = "";
+
+                //breakfast time
+                if (time == "breakfast") {
+                newTime = "b";
+                    if (budget >= 30) {
+                        newBudget = "high";
+                }
+                    else if (budget >= 20) {
+                        newBudget = "med";
+                }
+                    else {
+                        newBudget = "low"
+                }
+                }
+
+                //lunch time
+                else if (time == "lunch") {
+                newTime = "l";
+                    if (budget >= 45) {
+                        newBudget = "med";
+                }
+                    else if (budget >= 30) {
+                        newBudget = "med";
+                }
+                    else {
+                        newBudget = "low"
+                }
+                }
+
+                //dinner time
+                else if (time == "dinner") {
+                newTime = "d";
+                    if (budget >= 60) {
+                        newBudget = "high";
+                }
+                    else if (budget >= 40) {
+                        newBudget = "med";
+                }
+                    else {
+                        newBudget = "low"
+                }
+                }
+
+                //snack time
+                else {
+                newTime = "s"
+                    if (budget >= 20) {
+                        newBudget = "high";
+                }
+                    else if (budget >= 15) {
+                        newBudget = "med";
+                }
+                    else {
+                        newBudget = "low"
+                }
+                }
+
+                //compiling the suitable restaurants
+                for(var i = 0; i < restaurants.length; i++) {
+                    if (restaurants[i][1] == newTime && restaurants[i][2] == newBudget && (restaurants[i][3] == park || restaurants[i][3] == "none")) {
+                        var element = document.getElementById("div1");
+                        var name = restaurants[i][0];
+                        var res = name.link(restaurants[i][4]);
+                        arr.push(res);
+                    }
+                }
+
+                //displaying the restaurants
+                document.getElementById("div1").innerHTML = arr.join("<br>") + "<br>";
+                }
+                //end function
+
+            </script>
+        </fieldset>
+    </form>
+                
+
+            
+
+            <div class="footer">
+                <img src="./images /skyline.jpeg"/>
+            </div>
+
+            <div class="footer-text">
+                <p>Powered by Seminole High School Website Design Team <br> <a class=one href="WorksCited.pdf">Works Cited</a></p>
+              
+                    
+            </div>
+            
+
+    
+    </body>
+
+</html> 
